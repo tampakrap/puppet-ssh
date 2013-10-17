@@ -10,6 +10,5 @@ define ssh::config::client (
     ensure   => $ensure,
     content  => template('ssh/config.erb'),
     target   => $ssh::client_config,
-    multiple => $multiple,
   }
 }
