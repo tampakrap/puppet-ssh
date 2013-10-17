@@ -12,8 +12,8 @@ class ssh::params {
       $client_package     = 'net-misc/openssh'
       $client_config      = '/etc/ssh/ssh_config'
       $service_name       = 'sshd'
-      $service_hasstatus  = true,
-      $service_hasrestart = true,
+      $service_hasstatus  = true
+      $service_hasrestart = true
     }
     default: { fail("$::operatingsystem is not supported") }
   }
