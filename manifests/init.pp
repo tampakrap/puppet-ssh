@@ -11,38 +11,7 @@ class ssh (
   $service_enabled    = true,
 ) inherits ssh::params {
 
-  if $client_package == 'absent' {
-    $client_enabled = false
-  } else {
-    $client_enabled = true
-  }
-
   include ssh::package
   include ssh::service
-  include concat::setup
-
-  concat { $server_config:
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0600',
-    notify => Service['sshd'],
-  }
-
-  concat::fragment { "${server_config}_header":
-    target  => $server_config,
-    content => template('ssh/config.erb'),
-    order   => 00,
-  }
-
-  concat { $client_config:
-    owner  => 'root',
-    group  => 'root',
-  }
-
-  concat::fragment { "${client_config}_header":
-    target  => $client_config,
-    content => template('ssh/config.erb'),
-    order   => 00,
-  }
 
 }
