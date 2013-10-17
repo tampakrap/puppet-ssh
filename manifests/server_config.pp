@@ -7,7 +7,7 @@ define ssh::server_config (
 
   concat::fragment { $name:
     ensure  => $ensure,
-    content => template('ssh/config_header.erb'),
+    content => template('ssh/config.erb'),
     target  => $ssh::server_config,
   }
 }
