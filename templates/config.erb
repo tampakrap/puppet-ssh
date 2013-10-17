@@ -1,1 +1,7 @@
+<% if multiple -%>
+<% for item in @content -%>
+<%= @name %> <%= item %>
+<% end -%>
+<% else -%>
 <%= @name %> <%= [@content].flatten.join(' ') %>
+<% end -%>
