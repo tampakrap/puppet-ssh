@@ -2,15 +2,10 @@ define ssh::config::server (
   $ensure   = 'present',
   $content  = '',
   $multiple = false,
+  $order    = 10,
 ) {
   include concat::setup
   include ssh::config
-
-  if $name == 'Ports' {
-    $order = '01'
-  } else {
-    $order = '02'
-  }
 
   concat::fragment { $name:
     ensure   => $ensure,
