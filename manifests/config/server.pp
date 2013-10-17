@@ -1,4 +1,4 @@
-define ssh::client_config (
+define ssh::config::server (
   $ensure  = 'present',
   $content = '',
 ) {
@@ -8,6 +8,6 @@ define ssh::client_config (
   concat::fragment { $name:
     ensure  => $ensure,
     content => template('ssh/config.erb'),
-    target  => $ssh::client_config,
+    target  => $ssh::server_config,
   }
 }
