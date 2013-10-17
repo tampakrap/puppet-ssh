@@ -7,6 +7,7 @@ class ssh::package (
 
   package { $server_package:
     ensure => $server_ensure,
+    notify => Service['sshd'],
   }
 
   if $client_package == 'absent' {

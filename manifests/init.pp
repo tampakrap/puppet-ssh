@@ -12,6 +12,5 @@ class ssh (
 ) inherits ssh::params {
 
   include ssh::package
-  include ssh::service
 
 }
