@@ -3,7 +3,7 @@ define ssh::server_config (
   $content = '',
 ) {
   include concat::setup
-  include ssh
+  include ssh::config
 
   concat::fragment { $name:
     ensure  => $ensure,
