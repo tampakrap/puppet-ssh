@@ -16,7 +16,7 @@ class ssh::config (
 
   concat::fragment { "${server_config}_header":
     target  => $server_config,
-    content => template('ssh/config.erb'),
+    content => template('ssh/config_header.erb'),
     order   => 00,
   }
 
@@ -27,7 +27,7 @@ class ssh::config (
 
   concat::fragment { "${client_config}_header":
     target  => $client_config,
-    content => template('ssh/config.erb'),
+    content => template('ssh/config_header.erb'),
     order   => 00,
   }
 
