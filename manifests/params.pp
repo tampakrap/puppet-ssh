@@ -3,9 +3,9 @@ class ssh::params {
   $client_ensure  = 'present'
 
   case $::osfamily {
-    'debian': {},
-    'redhat': {},
-    'suse': {},
+    'debian': {}
+    'redhat': {}
+    'suse': {}
     'gentoo': {
       $server_package     = 'net-misc/openssh'
       $server_config      = '/etc/ssh/sshd_config'
@@ -14,7 +14,7 @@ class ssh::params {
       $service_name       = 'sshd'
       $service_hasstatus  = true,
       $service_hasrestart = true,
-    },
+    }
     default: { fail("$::operatingsystem is not supported") }
   }
 }
