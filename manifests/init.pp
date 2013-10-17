@@ -18,6 +18,7 @@ class ssh (
   }
 
   include ssh::package
+  include ssh::service
   include concat::setup
 
   concat { $server_config:
