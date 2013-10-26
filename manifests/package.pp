@@ -1,24 +1,22 @@
-class ssh::package (
-  $server_package = $ssh::server_package,
-  $server_ensure  = $ssh::server_ensure,
-  $client_package = $ssh::client_package,
-  $client_ensure  = $ssh::client_ensure,
-) {
+class ssh::package {
 
-  package { $server_package:
-    ensure => $server_ensure,
+  include ssh
+  include ssh::service
+
+  package { $ssh::server_package:
+    ensure => $ssh::server_ensure,
     notify => Service['sshd'],
   }
 
-  if $client_package == 'absent' {
-    $client_enabled = false
+  if $ssh::client_package == 'absent' {
+    $ssh::client_enabled = false
   } else {
-    $client_enabled = true
+    $ssh::client_enabled = true
   }
 
-  if $client_enabled and $client_package != $server_package {
-    package { $client_package:
-      ensure => $client_ensure,
+  if $ssh::client_enabled and $ssh::client_package != $ssh::server_package {
+    package { $ssh::client_package:
+      ensure => $ssh::client_ensure,
     }
   }
 
