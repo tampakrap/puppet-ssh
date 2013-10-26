@@ -9,7 +9,7 @@ define ssh::config::client (
 
   concat::fragment { $name:
     ensure   => $ensure,
-    content  => template('ssh/config.erb'),
+    content  => template("${module_name}/config.erb"),
     target   => $ssh::client_config,
     multiple => $multiple,
     order    => $order,

@@ -1,33 +1,30 @@
-class ssh::config (
-  $server_config = $ssh::server_config,
-  $client_config = $ssh::client_config,
-) {
+class ssh::config {
 
   include ssh
   include ssh::service
   include concat::setup
 
-  concat { $server_config:
+  concat { $ssh::server_config:
     owner  => 'root',
     group  => 'root',
     mode   => '0600',
     notify => Service['sshd'],
   }
 
-  concat::fragment { "${server_config}_header":
-    target  => $server_config,
-    content => template('ssh/config_header.erb'),
+  concat::fragment { "${ssh::server_config}_header":
+    target  => $ssh::server_config,
+    content => template("${module_name}/config_header.erb"),
     order   => 00,
   }
 
-  concat { $client_config:
+  concat { $ssh::client_config:
     owner  => 'root',
     group  => 'root',
   }
 
-  concat::fragment { "${client_config}_header":
-    target  => $client_config,
-    content => template('ssh/config_header.erb'),
+  concat::fragment { "${ssh::client_config}_header":
+    target  => $ssh::client_config,
+    content => template("${module_name}/config_header.erb"),
     order   => 00,
   }
 
