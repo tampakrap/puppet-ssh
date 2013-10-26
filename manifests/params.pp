@@ -1,6 +1,8 @@
 class ssh::params {
-  $server_ensure  = 'present'
-  $client_ensure  = 'present'
+
+  $server_ensure   = 'present'
+  $client_ensure   = 'present'
+  $service_enabled = true
 
   case $::osfamily {
     'debian': {}
@@ -17,4 +19,5 @@ class ssh::params {
     }
     default: { fail("$::operatingsystem is not supported") }
   }
+
 }

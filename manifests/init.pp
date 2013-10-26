@@ -8,7 +8,7 @@ class ssh (
   $service_name       = $ssh::params::service_name,
   $service_hasstatus  = $ssh::params::service_hasstatus,
   $service_hasrestart = $ssh::params::service_hasrestart,
-  $service_enabled    = true,
+  $service_enabled    = $ssh::params::service_enabled,
 ) inherits ssh::params {
 
   include ssh::package
